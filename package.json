@@ -1,0 +1,10 @@
+{
+  "name": "where-to-travel-to",
+  "private": true,
+  "scripts": {
+    "dev": "lerna dev"
+  },
+  "devDependencies": {
+    "lerna": "^3.22.1"
+  }
+}
