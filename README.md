@@ -1,3 +1,3 @@
 TODO
 
-- babel-plugin-import-graphql needs to be api only
+- Sort out babel configs
