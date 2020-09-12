@@ -5,6 +5,11 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": ""
+    "dev:api": "yarn --cwd ./packages/api dev",
+    "dev:client": "yarn --cwd ./packages/client dev",
+    "dev": "concurrently \"yarn dev:api\" \"yarn dev:client\""
+  },
+  "devDependencies": {
+    "concurrently": "^5.3.0"
   }
 }

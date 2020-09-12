@@ -1,0 +1,4 @@
+{
+  "rootMode": "upward",
+  "presets": ["next/babel"]
+}

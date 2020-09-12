@@ -3,7 +3,28 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "echo test"
+    "clean": "rm -rf lib",
+    "dev:build": "babel --root-mode upward ./src --out-dir ./lib --extensions \".ts\"",
+    "dev:run": "node lib/app.js",
+    "dev": "yarn clean && yarn dev:build && concurrently \"nodemon --watch ./src/**/*.ts --exec yarn dev:build\" \"yarn dev:run\"",
+    "generate": "graphql-codegen"
   },
-  "dependencies": {}
+  "dependencies": {
+    "apollo-server-express": "^2.17.0",
+    "express": "^4.17.1",
+    "graphql": "^15.3.0",
+    "graphql-tools": "^6.1.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.11.4",
+    "@babel/preset-env": "^7.11.0",
+    "@babel/preset-typescript": "^7.10.4",
+    "@graphql-codegen/cli": "^1.17.8",
+    "@graphql-codegen/typescript": "^1.17.9",
+    "@graphql-codegen/typescript-resolvers": "^1.17.9",
+    "babel-plugin-import-graphql": "^2.7.0",
+    "concurrently": "^5.3.0",
+    "nodemon": "^2.0.4"
+  }
 }

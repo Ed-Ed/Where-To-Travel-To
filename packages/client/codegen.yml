@@ -1,0 +1,11 @@
+schema: http://localhost:5000/graphql
+documents: "src/apollo/queries.ts"
+generates:
+  src/ __generated__/types.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-react-apollo
+    config:
+      noSchemaStitching: true
+      withHooks: true
