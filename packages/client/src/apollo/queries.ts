@@ -1,7 +1,17 @@
 import { gql } from "@apollo/client";
 
-export const TEST = gql`
-  query Test {
-    test
+gql`
+  query GetWeatherOptions {
+    getWeatherOptions {
+      label
+    }
+  }
+`;
+
+gql`
+  query GetActivityOptions {
+    getActivityOptions {
+      label
+    }
   }
 `;

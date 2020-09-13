@@ -1,12 +1,15 @@
-import Test from "../components/Test";
 import { initializeApollo } from "../apollo/apollo";
-import { TestDocument } from "../ __generated__/types";
+import {
+  GetWeatherOptionsDocument,
+  GetActivityOptionsDocument,
+} from "../ __generated__/types";
+import ActivityOptions from "../components/Options/Activity";
 
 const Home: React.FC = () => {
   return (
     <>
       <h1>NextJS GraphQL Apollo App</h1>
-      <Test />
+      <ActivityOptions />
     </>
   );
 };
@@ -18,7 +21,11 @@ export async function getServerSideProps() {
   const apolloClient = initializeApollo();
 
   await apolloClient.query({
-    query: TestDocument,
+    query: GetWeatherOptionsDocument,
+  });
+
+  await apolloClient.query({
+    query: GetActivityOptionsDocument,
   });
 
   return {

@@ -12,7 +12,13 @@ export type Scalars = {
 
 export type Query = {
   __typename?: 'Query';
-  test?: Maybe<Scalars['String']>;
+  getWeatherOptions: Array<Option>;
+  getActivityOptions: Array<Option>;
+};
+
+export type Option = {
+  __typename?: 'Option';
+  label: Scalars['String'];
 };
 
 
@@ -81,6 +87,7 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
   Query: ResolverTypeWrapper<{}>;
+  Option: ResolverTypeWrapper<Option>;
   String: ResolverTypeWrapper<Scalars['String']>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
 };
@@ -88,16 +95,24 @@ export type ResolversTypes = {
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
   Query: {};
+  Option: Option;
   String: Scalars['String'];
   Boolean: Scalars['Boolean'];
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  test?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  getWeatherOptions?: Resolver<Array<ResolversTypes['Option']>, ParentType, ContextType>;
+  getActivityOptions?: Resolver<Array<ResolversTypes['Option']>, ParentType, ContextType>;
+};
+
+export type OptionResolvers<ContextType = any, ParentType extends ResolversParentTypes['Option'] = ResolversParentTypes['Option']> = {
+  label?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType>;
 };
 
 export type Resolvers<ContextType = any> = {
   Query?: QueryResolvers<ContextType>;
+  Option?: OptionResolvers<ContextType>;
 };
 
 
