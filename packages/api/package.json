@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "clean": "rm -rf lib",
-    "dev:build": "babel --root-mode upward ./src --out-dir ./lib --extensions \".ts\"",
+    "dev:build": "babel ./src --out-dir ./lib --extensions \".ts\"",
     "dev:run": "node lib/app.js",
     "dev": "yarn clean && yarn dev:build && concurrently \"nodemon --watch ./src/**/*.ts --exec yarn dev:build\" \"yarn dev:run\"",
     "generate": "graphql-codegen"

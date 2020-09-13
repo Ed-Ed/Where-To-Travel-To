@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Button } from "@edwardandrewb/elements";
 
 import { useTestQuery } from "../ __generated__/types";
 
@@ -24,7 +25,7 @@ const Test: React.FC = () => {
   if (data) {
     console.log("=== test component data", loading, data);
 
-    return <StyledP>success</StyledP>;
+    return <Button>success</Button>;
   }
 
   return null;
