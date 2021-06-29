@@ -2,6 +2,9 @@ import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 export type Maybe<T> = T | null;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+const defaultOptions =  {}
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -11,15 +14,15 @@ export type Scalars = {
   Float: number;
 };
 
+export type Option = {
+  __typename?: 'Option';
+  label: Scalars['String'];
+};
+
 export type Query = {
   __typename?: 'Query';
   getWeatherOptions: Array<Option>;
   getActivityOptions: Array<Option>;
-};
-
-export type Option = {
-  __typename?: 'Option';
-  label: Scalars['String'];
 };
 
 export type GetWeatherOptionsQueryVariables = Exact<{ [key: string]: never; }>;
@@ -69,10 +72,12 @@ export const GetWeatherOptionsDocument = gql`
  * });
  */
 export function useGetWeatherOptionsQuery(baseOptions?: Apollo.QueryHookOptions<GetWeatherOptionsQuery, GetWeatherOptionsQueryVariables>) {
-        return Apollo.useQuery<GetWeatherOptionsQuery, GetWeatherOptionsQueryVariables>(GetWeatherOptionsDocument, baseOptions);
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetWeatherOptionsQuery, GetWeatherOptionsQueryVariables>(GetWeatherOptionsDocument, options);
       }
 export function useGetWeatherOptionsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetWeatherOptionsQuery, GetWeatherOptionsQueryVariables>) {
-          return Apollo.useLazyQuery<GetWeatherOptionsQuery, GetWeatherOptionsQueryVariables>(GetWeatherOptionsDocument, baseOptions);
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetWeatherOptionsQuery, GetWeatherOptionsQueryVariables>(GetWeatherOptionsDocument, options);
         }
 export type GetWeatherOptionsQueryHookResult = ReturnType<typeof useGetWeatherOptionsQuery>;
 export type GetWeatherOptionsLazyQueryHookResult = ReturnType<typeof useGetWeatherOptionsLazyQuery>;
@@ -101,10 +106,12 @@ export const GetActivityOptionsDocument = gql`
  * });
  */
 export function useGetActivityOptionsQuery(baseOptions?: Apollo.QueryHookOptions<GetActivityOptionsQuery, GetActivityOptionsQueryVariables>) {
-        return Apollo.useQuery<GetActivityOptionsQuery, GetActivityOptionsQueryVariables>(GetActivityOptionsDocument, baseOptions);
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetActivityOptionsQuery, GetActivityOptionsQueryVariables>(GetActivityOptionsDocument, options);
       }
 export function useGetActivityOptionsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetActivityOptionsQuery, GetActivityOptionsQueryVariables>) {
-          return Apollo.useLazyQuery<GetActivityOptionsQuery, GetActivityOptionsQueryVariables>(GetActivityOptionsDocument, baseOptions);
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetActivityOptionsQuery, GetActivityOptionsQueryVariables>(GetActivityOptionsDocument, options);
         }
 export type GetActivityOptionsQueryHookResult = ReturnType<typeof useGetActivityOptionsQuery>;
 export type GetActivityOptionsLazyQueryHookResult = ReturnType<typeof useGetActivityOptionsLazyQuery>;

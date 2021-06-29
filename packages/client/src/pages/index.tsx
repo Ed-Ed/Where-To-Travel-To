@@ -1,23 +1,30 @@
+import React from 'react';
+import { NormalizedCacheObject } from '@apollo/client';
 import { initializeApollo } from '../apollo/apollo';
 import {
   GetWeatherOptionsDocument,
   GetActivityOptionsDocument,
-} from '../ __generated__/types';
+} from '../__generated__/graphql';
 import { ActivityOptions } from '../components/Options/Activity';
 import { Title } from '../components/Title';
 import { PageContainer } from '../components/Layout/PageContainer';
-const Home: React.FC = () => {
-  return (
-    <PageContainer>
-      <Title />
 
-      <ActivityOptions />
-    </PageContainer>
-  );
+const Home: React.FC = () => (
+  <PageContainer>
+    <Title />
+
+    <ActivityOptions />
+  </PageContainer>
+);
+
+type GetServerSideProps = {
+  props: {
+    initialApolloState: NormalizedCacheObject;
+  }
 };
 
-export async function getServerSideProps() {
-  // TODO find better way?
+export async function getServerSideProps(): Promise<GetServerSideProps> {
+  // TODO find better way
   const apolloClient = initializeApollo();
 
   await apolloClient.query({

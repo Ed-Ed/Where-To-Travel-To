@@ -1,7 +1,7 @@
 import React from 'react';
 import { Chip } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { useGetActivityOptionsQuery } from '../../ __generated__/types';
+import { useGetActivityOptionsQuery } from '../../__generated__/graphql';
 
 const useStyles = makeStyles({
   root: {
@@ -36,17 +36,15 @@ const ActivityOptions: React.FC = () => {
     if (data.getActivityOptions.length > 0) {
       return (
         <div>
-          {data.getActivityOptions.map((e) => {
-            return (
-              <Chip
-                key={e.label}
-                className={classes.root}
-                label={e.label}
-                clickable
-                onClick={handleActivityClick}
-              />
-            );
-          })}
+          {data.getActivityOptions.map((e) => (
+            <Chip
+              key={e.label}
+              className={classes.root}
+              label={e.label}
+              clickable
+              onClick={handleActivityClick}
+            />
+          ))}
         </div>
       );
     }

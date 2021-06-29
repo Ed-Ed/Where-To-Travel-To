@@ -1,41 +1,39 @@
-import { useMemo } from "react";
+import { useMemo } from 'react';
 import {
   ApolloClient,
   InMemoryCache,
   NormalizedCacheObject,
-} from "@apollo/client";
+} from '@apollo/client';
 
 let apolloClient: ApolloClient<NormalizedCacheObject> | undefined;
 
-const createApolloClient = () => {
-  return new ApolloClient({
-    ssrMode: typeof window === "undefined",
-    uri: "http://localhost:5000/graphql",
-    cache: new InMemoryCache(),
-  });
-};
+const createApolloClient = () => new ApolloClient({
+  ssrMode: typeof window === 'undefined',
+  uri: 'http://localhost:5000/graphql',
+  cache: new InMemoryCache(),
+});
 
 export const initializeApollo = (
-  initialState: any = null
+  initialState: NormalizedCacheObject = null,
 ): ApolloClient<NormalizedCacheObject> => {
-  const _apolloClient = apolloClient ?? createApolloClient();
+  const thisApolloClient = apolloClient ?? createApolloClient();
 
   if (initialState) {
-    _apolloClient.cache.restore(initialState);
+    thisApolloClient.cache.restore(initialState);
   }
 
-  if (typeof window === "undefined") {
-    return _apolloClient;
+  if (typeof window === 'undefined') {
+    return thisApolloClient;
   }
 
   if (!apolloClient) {
-    apolloClient = _apolloClient;
+    apolloClient = thisApolloClient;
   }
 
-  return _apolloClient;
+  return thisApolloClient;
 };
 
-export const useApollo = (initialState: any) => {
+export const useApollo = (initialState: NormalizedCacheObject): ApolloClient<NormalizedCacheObject> => {
   const store = useMemo(() => initializeApollo(initialState), [initialState]);
 
   return store;

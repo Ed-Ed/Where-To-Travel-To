@@ -6,7 +6,7 @@ import { CssBaseline, ThemeProvider } from '@material-ui/core';
 import { useApollo } from '../apollo/apollo';
 import { theme } from '../theme';
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   const client = useApollo(pageProps.initialApolloState);
 
   React.useEffect(() => {

@@ -1,3 +1,3 @@
-const weatherOptions = [{ label: "Hot" }, { label: "Cold" }];
+const weatherOptions = [{ label: 'Hot' }, { label: 'Cold' }];
 
 export default weatherOptions;
