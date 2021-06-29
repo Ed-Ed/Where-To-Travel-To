@@ -7,9 +7,18 @@
   "scripts": {
     "dev:api": "yarn --cwd ./packages/api dev",
     "dev:client": "yarn --cwd ./packages/client dev",
-    "dev": "concurrently \"yarn dev:api\" \"yarn dev:client\""
+    "dev": "concurrently \"yarn dev:api\" \"yarn dev:client\"",
+    "qa": "eslint src/**/* --ext .ts,.tsx --fix"
   },
   "devDependencies": {
-    "concurrently": "^5.3.0"
+    "@typescript-eslint/eslint-plugin": "^4.20.0",
+    "@typescript-eslint/parser": "^4.20.0",
+    "concurrently": "^5.3.0",
+    "eslint": "^7.23.0",
+    "eslint-config-airbnb-typescript": "^12.3.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.23.1",
+    "eslint-plugin-react-hooks": "^4.2.0"
   }
 }

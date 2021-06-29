@@ -1,23 +1,23 @@
-import { initializeApollo } from "../apollo/apollo";
+import { initializeApollo } from '../apollo/apollo';
 import {
   GetWeatherOptionsDocument,
   GetActivityOptionsDocument,
-} from "../ __generated__/types";
-import ActivityOptions from "../components/Options/Activity";
-
+} from '../ __generated__/types';
+import { ActivityOptions } from '../components/Options/Activity';
+import { Title } from '../components/Title';
+import { PageContainer } from '../components/Layout/PageContainer';
 const Home: React.FC = () => {
   return (
-    <>
-      <h1>NextJS GraphQL Apollo App</h1>
+    <PageContainer>
+      <Title />
+
       <ActivityOptions />
-    </>
+    </PageContainer>
   );
 };
 
 export async function getServerSideProps() {
-  // I really don't think this is the best way to do this
-  // even though it's what their example shows
-  // TODO find better way
+  // TODO find better way?
   const apolloClient = initializeApollo();
 
   await apolloClient.query({
