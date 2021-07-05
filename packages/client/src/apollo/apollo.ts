@@ -7,11 +7,14 @@ import {
 
 let apolloClient: ApolloClient<NormalizedCacheObject> | undefined;
 
-const createApolloClient = () => new ApolloClient({
-  ssrMode: typeof window === 'undefined',
-  uri: 'http://localhost:5000/graphql',
-  cache: new InMemoryCache(),
-});
+const createApolloClient = () =>
+  new ApolloClient({
+    ssrMode: typeof window === 'undefined',
+    uri: 'http://localhost:5000/graphql',
+    cache: new InMemoryCache({
+      addTypename: false,
+    }),
+  });
 
 export const initializeApollo = (
   initialState: NormalizedCacheObject = null,
@@ -33,7 +36,9 @@ export const initializeApollo = (
   return thisApolloClient;
 };
 
-export const useApollo = (initialState: NormalizedCacheObject): ApolloClient<NormalizedCacheObject> => {
+export const useApollo = (
+  initialState: NormalizedCacheObject,
+): ApolloClient<NormalizedCacheObject> => {
   const store = useMemo(() => initializeApollo(initialState), [initialState]);
 
   return store;

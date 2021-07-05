@@ -5,6 +5,7 @@ import { ApolloProvider } from '@apollo/client';
 import { CssBaseline, ThemeProvider } from '@material-ui/core';
 import { useApollo } from '../apollo/apollo';
 import { theme } from '../theme';
+import { SelectedOptionsProvider } from '../providers/SelectedOptions';
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   const client = useApollo(pageProps.initialApolloState);
@@ -25,13 +26,15 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
 
-      <ThemeProvider theme={theme}>
-        <ApolloProvider client={client}>
-          <CssBaseline />
+      <SelectedOptionsProvider>
+        <ThemeProvider theme={theme}>
+          <ApolloProvider client={client}>
+            <CssBaseline />
 
-          <Component {...pageProps} />
-        </ApolloProvider>
-      </ThemeProvider>
+            <Component {...pageProps} />
+          </ApolloProvider>
+        </ThemeProvider>
+      </SelectedOptionsProvider>
     </>
   );
 }

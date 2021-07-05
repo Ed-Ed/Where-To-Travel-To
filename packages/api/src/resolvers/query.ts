@@ -1,10 +1,10 @@
 import { QueryResolvers } from '../__generated__/graphql';
-import weatherChoices from '../services/weather';
-import activityChoices from '../services/activity';
+import { weatherOptions } from '../services/weather';
+import { activityOptions } from '../services/activity';
 
 const queryResolvers: QueryResolvers = {
-  getWeatherOptions: () => weatherChoices,
-  getActivityOptions: () => activityChoices,
+  getWeatherOptions: () => weatherOptions,
+  getActivityOptions: () => activityOptions,
 };
 
 export default queryResolvers;

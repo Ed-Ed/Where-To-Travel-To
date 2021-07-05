@@ -16,6 +16,7 @@ export type Scalars = {
 
 export type Option = {
   __typename?: 'Option';
+  id: Scalars['ID'];
   label: Scalars['String'];
 };
 
@@ -32,7 +33,7 @@ export type GetWeatherOptionsQuery = (
   { __typename?: 'Query' }
   & { getWeatherOptions: Array<(
     { __typename?: 'Option' }
-    & Pick<Option, 'label'>
+    & Pick<Option, 'id' | 'label'>
   )> }
 );
 
@@ -43,7 +44,7 @@ export type GetActivityOptionsQuery = (
   { __typename?: 'Query' }
   & { getActivityOptions: Array<(
     { __typename?: 'Option' }
-    & Pick<Option, 'label'>
+    & Pick<Option, 'id' | 'label'>
   )> }
 );
 
@@ -51,6 +52,7 @@ export type GetActivityOptionsQuery = (
 export const GetWeatherOptionsDocument = gql`
     query GetWeatherOptions {
   getWeatherOptions {
+    id
     label
   }
 }
@@ -85,6 +87,7 @@ export type GetWeatherOptionsQueryResult = Apollo.QueryResult<GetWeatherOptionsQ
 export const GetActivityOptionsDocument = gql`
     query GetActivityOptions {
   getActivityOptions {
+    id
     label
   }
 }

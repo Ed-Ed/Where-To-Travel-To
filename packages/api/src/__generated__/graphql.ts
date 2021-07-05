@@ -14,6 +14,7 @@ export type Scalars = {
 
 export type Option = {
   __typename?: 'Option';
+  id: Scalars['ID'];
   label: Scalars['String'];
 };
 
@@ -89,6 +90,7 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
   Option: ResolverTypeWrapper<Option>;
+  ID: ResolverTypeWrapper<Scalars['ID']>;
   String: ResolverTypeWrapper<Scalars['String']>;
   Query: ResolverTypeWrapper<{}>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
@@ -97,12 +99,14 @@ export type ResolversTypes = {
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
   Option: Option;
+  ID: Scalars['ID'];
   String: Scalars['String'];
   Query: {};
   Boolean: Scalars['Boolean'];
 };
 
 export type OptionResolvers<ContextType = any, ParentType extends ResolversParentTypes['Option'] = ResolversParentTypes['Option']> = {
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   label?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };

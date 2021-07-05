@@ -5,7 +5,7 @@ import {
   GetWeatherOptionsDocument,
   GetActivityOptionsDocument,
 } from '../__generated__/graphql';
-import { ActivityOptions } from '../components/Options/Activity';
+import { OptionsQuery, Query } from '../components/Options/OptionsQuery';
 import { Title } from '../components/Title';
 import { PageContainer } from '../components/Layout/PageContainer';
 
@@ -13,14 +13,16 @@ const Home: React.FC = () => (
   <PageContainer>
     <Title />
 
-    <ActivityOptions />
+    <OptionsQuery title="Activity" query={Query.GET_ACTIVITY_OPTIONS} />
+
+    <OptionsQuery title="Weather" query={Query.GET_WEATHER_OPTIONS} />
   </PageContainer>
 );
 
 type GetServerSideProps = {
   props: {
     initialApolloState: NormalizedCacheObject;
-  }
+  };
 };
 
 export async function getServerSideProps(): Promise<GetServerSideProps> {

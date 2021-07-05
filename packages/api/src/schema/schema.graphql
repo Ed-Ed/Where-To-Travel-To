@@ -4,5 +4,6 @@ type Query {
 }
 
 type Option {
+  id: ID!
   label: String!
 }
